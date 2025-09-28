@@ -57,8 +57,10 @@ h2 {
   font-weight: 700;
   font-style: italic;
 }
-color: rgb(74, 0, 248);
+color: rgb(34, 5, 101);
 font-size: 2em;
+text-align: center;
+text-decoration: underline;
 }
 
 li {
@@ -89,7 +91,8 @@ font-size: 1em;
 color: rgb(5, 4, 61);
 }
 .lien_1 {
-    color: black;
+    color: rgb(5, 4, 62);
+    text-decoration: none;
 }
 body {
     background-color: rgb(255, 213, 179);

@@ -1,11 +1,10 @@
 p {
     color: rgb(2, 0, 109);
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family:Arial, sans-serif ;
     font-size: 1em;
 }
 
-h1 {
-    .space-mono-regular {
+h1 { .space-mono-regular {
   font-family: "Space Mono", monospace;
   font-weight: 400;
   font-style: normal;
@@ -28,9 +27,13 @@ h1 {
   font-weight: 700;
   font-style: italic;
 }
-color: rgb(0, 0, 255);
-font-size: 3em;
+color: rgb(236, 235, 239);
+font-size: 2em;
+text-align: center;
+color: rgb(0, 0, 89);
 }
+
+
 
 h2 {
   .space-mono-regular {
@@ -86,4 +89,11 @@ li {
 } 
 font-size: 1em;
 color: rgb(5, 4, 61);
+}
+body{
+    background-color: rgb(255, 213, 178);
+    margin: 40px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
