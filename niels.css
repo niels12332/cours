@@ -5,16 +5,20 @@
 body {
     margin: 0;
     font-family: "Space Mono", monospace;
-    background: linear-gradient(135deg, #eef7ff 0%, #f7e7c8 100%);
+    background:
+        radial-gradient(circle at top left, rgba(102, 153, 255, 0.18), transparent 30%),
+        linear-gradient(135deg, #edf6ff 0%, #f9efe0 55%, #fef7ea 100%);
     color: #1f2940;
 }
 
 .site-header {
-    background: rgba(20, 34, 62, 0.95);
+    background: rgba(16, 28, 52, 0.96);
     padding: 18px 24px;
     position: sticky;
     top: 0;
     z-index: 10;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
 }
 
 .nav {
@@ -27,9 +31,11 @@ body {
 }
 
 .brand {
-    color: white;
+    color: #ffffff;
     font-size: 1.5rem;
     font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .nav-links {
@@ -39,9 +45,14 @@ body {
 }
 
 .nav-links a {
-    color: white;
+    color: #edf3ff;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
 }
 
 .page,
@@ -53,10 +64,10 @@ body {
 
 .hero {
     display: grid;
-    grid-template-columns: 1.6fr 0.9fr;
+    grid-template-columns: 1.7fr 0.9fr;
     gap: 24px;
     align-items: center;
-    padding: 20px 0 30px;
+    padding: 30px 0 40px;
 }
 
 .hero-text,
@@ -64,28 +75,42 @@ body {
 .card,
 .panel,
 .intro-panel {
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(24, 39, 79, 0.12);
-    border-radius: 22px;
-    box-shadow: 0 12px 28px rgba(27, 38, 58, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(34, 46, 73, 0.08);
 }
 
 .hero-text {
-    padding: 32px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-text::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: rgba(142, 179, 255, 0.14);
+    border-radius: 50%;
+    right: -40px;
+    top: -30px;
 }
 
 .eyebrow {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-size: 0.72rem;
-    color: #5773a1;
+    color: #4d6ea9;
     font-weight: 700;
 }
 
 h1 {
     margin: 12px 0 16px;
-    font-size: clamp(2.2rem, 4vw, 4rem);
-    color: #1d2d4a;
+    font-size: clamp(2.4rem, 4vw, 4.2rem);
+    line-height: 1.1;
+    color: #17263f;
 }
 
 h2 {
@@ -102,15 +127,15 @@ h3 {
 p,
 li {
     font-size: 1rem;
-    line-height: 1.8;
-    color: #2b3651;
+    line-height: 1.85;
+    color: #2d3957;
 }
 
 .actions {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
-    margin-top: 24px;
+    margin-top: 26px;
 }
 
 .button {
@@ -119,20 +144,28 @@ li {
     border-radius: 999px;
     text-decoration: none;
     font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
 }
 
 .button.primary {
-    background: #1d2d4a;
+    background: linear-gradient(135deg, #1b2d4f 0%, #2f4d87 100%);
     color: white;
+    box-shadow: 0 10px 18px rgba(31, 58, 105, 0.25);
 }
 
 .button.secondary {
-    background: #dfeeff;
+    background: #e5f0ff;
     color: #1d2d4a;
 }
 
 .info-box {
-    padding: 24px 22px;
+    padding: 28px 22px;
+    border-left: 6px solid #8db4ff;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(236,245,255,0.9));
 }
 
 .info-box ul {
@@ -156,12 +189,20 @@ li {
 .panel,
 .intro-panel {
     padding: 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover,
+.panel:hover,
+.intro-panel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 32px rgba(34, 46, 73, 0.08);
 }
 
 .quote-box {
     margin-top: 30px;
     padding: 28px 24px;
-    background: rgba(255, 255, 255, 0.6);
+    background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(233,242,255,0.9));
     border-left: 6px solid #1d2d4a;
     border-radius: 18px;
 }
@@ -174,19 +215,19 @@ blockquote {
 }
 
 .highlight {
-    background: linear-gradient(135deg, #e8f3ff 0%, #f9e6bb 100%);
+    background: linear-gradient(135deg, #e8f3ff 0%, #f9e7c3 100%);
     margin-top: 24px;
 }
 
 .highlight-alt {
-    background: linear-gradient(135deg, #f9e6bb 0%, #e8f3ff 100%);
+    background: linear-gradient(135deg, #f9e7c3 0%, #e8f3ff 100%);
     margin-top: 24px;
 }
 
 .timeline {
     display: grid;
     gap: 18px;
-    margin-top: 22px;
+    margin-top: 24px;
 }
 
 .time-item {
@@ -195,13 +236,14 @@ blockquote {
     gap: 18px;
     align-items: start;
     padding: 18px 20px;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(24, 39, 79, 0.12);
     border-radius: 18px;
+    border-left: 5px solid #7aa9ff;
 }
 
 .year {
-    background: #1d2d4a;
+    background: linear-gradient(135deg, #1d2d4a 0%, #35539f 100%);
     color: white;
     border-radius: 999px;
     text-align: center;
