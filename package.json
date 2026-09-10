@@ -1,0 +1,13 @@
+{
+  "name": "trs4-site",
+  "version": "1.0.0",
+  "description": "Site personnel TRS4 avec backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
