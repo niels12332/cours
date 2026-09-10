@@ -2,71 +2,63 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>les projet de trs4 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes projets de code</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="ensemble-de_nombre.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="niels.css">
 </head>
 <body>
-    <header>
-        <h1>la docupentation</h1>
-        <h2>les projets en cours  :</h2>
+    <header class="site-header">
+        <nav class="nav">
+            <div class="brand">Mon parcours</div>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="niels.html">Vie scolaire</a>
+                <a href="math.html">Progression</a>
+                <a href="ensemble_de_nombre.html">Projets</a>
+            </div>
+        </nav>
     </header>
 
-    <section>
-        <h3>Ensembles de nombres</h3>
-        <a href="image/zoom_classe_de_nombre.png">
-            <img src="image/telechargement.png" alt="image des ensembles de nombres N,Z,D,Q,R" title="classe de nombres">
-        </a>
-        <p>
-            L'ensemble <strong>{0;1;2;3; ...}</strong> est appelé ensemble des nombres entiers naturels. Cet ensemble se note <strong>N</strong>.<br>
-            L'ensemble <strong>{...;-3;-2;-1; 0; 1; 2; 3; ...}</strong> est appelé ensemble des nombres entiers relatifs. Cet ensemble se note <strong>Z</strong>.
-        </p>
-        <ul>
-            <li>Ce qui veut dire que <strong>N</strong> c'est tous les nombres entiers naturels, c'est-à-dire 0;1;2;3;4...</li>
-            <li>Ce qui veut dire que <strong>Z</strong> c'est tous les nombres entiers relatifs, c'est-à-dire ...;-3;-2;-1;0;1;2;3;...</li>
-        </ul>
-        <p>
-            L'ensemble des nombres pouvant s'écrire sous la forme <em>a/10<sup>n</sup></em>, avec <em>a∈Z</em> et <em>n∈N</em>, est appelé ensemble des nombres décimaux. Cet ensemble se note <strong>D</strong>.
-        </p>
-        <ul>
-            <li>Ce qui veut dire que <strong>D</strong> c'est l'ensemble des naturels et des relatifs plus les nombres à virgule sauf ceux qui ont une infinité de décimales ou une répétition.</li>
-        </ul>
-        <p>
-            L'ensemble des nombres pouvant s'écrire sous la forme <em>p/q</em>, avec <em>p∈Z</em> et <em>q∈N</em> non nul, est appelé ensemble des nombres rationnels. Cet ensemble se note <strong>Q</strong>.
-        </p>
-        <ul>
-            <li>Tout nombre rationnel se caractérise par une écriture décimale ayant un nombre fini de décimales non nulles ou comportant une période.</li>
-        </ul>
-        <p>
-            Un nombre réel est un nombre qui peut s'écrire avec une partie entière et un nombre fini ou infini de décimales. L'ensemble des nombres réels est noté <strong>R</strong>.
-        </p>
-        <ul>
-            <li><strong>Remarque :</strong></li>
-            <li>On note <strong>R<sup>*</sup></strong> ou <strong>R\{0}</strong> l'ensemble des nombres réels différents de 0.</li>
-            <li>On note <strong>R<sup>+</sup></strong> l'ensemble des réels positifs et <strong>R<sup>-</sup></strong> l'ensemble des réels négatifs.</li>
-            <li>Les nombres réels qui ne sont pas rationnels sont dits <strong>nombres irrationnels</strong>.</li>
-        </ul>
-        <p>
-            On remarque sur cette image que <strong>N</strong> est inclus dans <strong>Z</strong>, que <strong>Z</strong> est inclus dans <strong>D</strong>, que <strong>D</strong> est inclus dans <strong>Q</strong> et que <strong>Q</strong> est inclus dans <strong>R</strong> : <strong>N⊂Z⊂D⊂Q⊂R</strong>.
-        </p>
-    </section>
+    <main class="page-content">
+        <section class="intro-panel">
+            <h1>Mes projets</h1>
+            <p>
+                Le plus important, ce n’est pas de tout savoir tout de suite. C’est de commencer, de tester, de corriger et de continuer.
+                Mes projets me permettent de mettre en pratique ce que j’apprends et de voir mes progrès.
+            </p>
+        </section>
 
-    <section>
-        <h3>Les intervalles</h3>
-        <a href="image/intervalle_zoom.png">
-            <img src="image/intervalle.png" alt="image des intervalles">
-        </a>
-    </section>
+        <section class="grid-3">
+            <article class="card">
+                <h3>Site personnel</h3>
+                <p>
+                    J’ai créé une page qui raconte mon parcours, mes idées et mes objectifs. C’est un projet simple mais très important pour moi.
+                </p>
+            </article>
+            <article class="card">
+                <h3>Création de contenu</h3>
+                <p>
+                    J’aime organiser l’information, choisir les mots et construire une structure claire pour que le site soit agréable à lire.
+                </p>
+            </article>
+            <article class="card">
+                <h3>Amélioration</h3>
+                <p>
+                    Chaque projet me permet de voir mes erreurs, de corriger mon code et d’apprendre de nouvelles méthodes.
+                </p>
+            </article>
+        </section>
 
-    <section>
-        <h3>Union et intersection</h3>
-        <p>
-            Soient <strong>I</strong> et <strong>J</strong> deux intervalles de <strong>R</strong>.<br>
-            On appelle <strong>intersection</strong> de <strong>I</strong> et de <strong>J</strong> l'ensemble, noté <strong>I∩J</strong>, des réels <strong>x</strong> qui appartiennent à la fois à <strong>I</strong> et à <strong>J</strong>. L'ensemble <strong>I∩J</strong> se lit « I inter J ».<br>
-            On appelle <strong>réunion</strong> de <strong>I</strong> et de <strong>J</strong> l'ensemble, noté <strong>I∪J</strong>, des réels <strong>x</strong> appartenant à <strong>I</strong> ou à <strong>J</strong>. L'ensemble <strong>I∪J</strong> se lit « I union J ».
-        </p>
-    </section>
+        <section class="panel highlight">
+            <h2>Le vrai but</h2>
+            <p>
+                Ce que je veux, ce n’est pas seulement faire beau. Je veux apprendre à construire quelque chose qui a du sens,
+                à résoudre des problèmes, à être créatif et à grandir pas à pas dans le monde du numérique.
+            </p>
+        </section>
+    </main>
 </body>
 </html>
