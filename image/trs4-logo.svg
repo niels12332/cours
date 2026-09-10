@@ -1,0 +1,38 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shieldGlow" x1="36" y1="16" x2="185" y2="198" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7AF7D7"/>
+      <stop offset="0.52" stop-color="#7AB9FF"/>
+      <stop offset="1" stop-color="#B9F6D1"/>
+    </linearGradient>
+    <linearGradient id="crossGlow" x1="58" y1="54" x2="145" y2="141" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8FFF8"/>
+      <stop offset="1" stop-color="#A8E9FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="220" height="220" rx="28" fill="#071321"/>
+
+  <path d="M110 18L172 48V103C172 142 152 173 110 198C68 173 48 142 48 103V48L110 18Z" fill="#0B1A2C" stroke="url(#shieldGlow)" stroke-width="4"/>
+
+  <path d="M110 42L154 64V101C154 130 139 154 110 171C81 154 66 130 66 101V64L110 42Z" fill="#0F233C" stroke="rgba(122,185,255,0.7)" stroke-width="2"/>
+
+  <path d="M77 84H120V96H106V128H92V96H77V84Z" fill="url(#crossGlow)"/>
+  <path d="M121 78H142V96H121V78ZM121 96H142V128H121V96Z" fill="url(#crossGlow)" opacity="0.96"/>
+  <path d="M78 138H132V152H78V138ZM93 120H109V152H93V120Z" fill="url(#crossGlow)" opacity="0.8"/>
+
+  <path d="M52 54H32V72H52" stroke="#7AF7D7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M168 54H188V72H168" stroke="#7AF7D7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M44 150L28 166" stroke="#7AB9FF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M176 150L192 166" stroke="#7AB9FF" stroke-width="3" stroke-linecap="round"/>
+
+  <circle cx="110" cy="114" r="4" fill="#7AF7D7"/>
+  <circle cx="110" cy="146" r="3.2" fill="#7AB9FF"/>
+  <circle cx="86" cy="102" r="3.2" fill="#7AF7D7"/>
+  <circle cx="134" cy="102" r="3.2" fill="#7AB9FF"/>
+
+  <path d="M110 26V16" stroke="#7AF7D7" stroke-width="3" stroke-linecap="round"/>
+  <path d="M110 202V214" stroke="#7AF7D7" stroke-width="3" stroke-linecap="round"/>
+  <path d="M42 110H30" stroke="#7AB9FF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M190 110H178" stroke="#7AB9FF" stroke-width="3" stroke-linecap="round"/>
+</svg>
