@@ -73,6 +73,18 @@
             </article>
         </section>
 
+        <section class="deploy-panel" aria-labelledby="deploy-title">
+            <div class="deploy-heading">
+                <div>
+                    <p class="eyebrow">Render / production / signal</p>
+                    <h2 id="deploy-title">Derniers déploiements</h2>
+                </div>
+                <button class="button secondary" id="refresh-deploys" type="button">Actualiser</button>
+            </div>
+            <p class="deploy-status" id="deploy-status" role="status">Chargement des déploiements...</p>
+            <ul class="deploy-list" id="deploy-list" aria-live="polite"></ul>
+        </section>
+
         <section class="quote-box">
             <blockquote>
                 “Le vrai pouvoir ne vient pas d’un clavier noir. Il vient de la compréhension.”
@@ -86,5 +98,78 @@
             <span>Credit by TRS4</span>
         </div>
     </footer>
+
+    <script>
+        const deployStatus = document.querySelector('#deploy-status');
+        const deployList = document.querySelector('#deploy-list');
+        const refreshDeploys = document.querySelector('#refresh-deploys');
+
+        function formatDeployDate(value) {
+            if (!value) return 'Date inconnue';
+            return new Intl.DateTimeFormat('fr-FR', {
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            }).format(new Date(value));
+        }
+
+        function deployLabel(deploy) {
+            return deploy.commit?.message || deploy.commit?.id?.slice(0, 7) || 'Déploiement Render';
+        }
+
+        async function loadDeploys() {
+            refreshDeploys.disabled = true;
+            deployStatus.textContent = 'Chargement des déploiements...';
+            deployList.replaceChildren();
+
+            try {
+                const response = await fetch('/api/deploys?limit=3');
+                const payload = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(payload.error || 'Impossible de charger les déploiements.');
+                }
+
+                const deploys = Array.isArray(payload) ? payload : payload.data || [];
+                if (!deploys.length) {
+                    deployStatus.textContent = 'Aucun déploiement disponible.';
+                    return;
+                }
+
+                deployStatus.textContent = `${deploys.length} déploiement(s) récent(s)`;
+                deploys.forEach((entry) => {
+                    const deploy = entry.deploy || entry;
+                    const item = document.createElement('li');
+                    item.className = 'deploy-item';
+                    const dot = document.createElement('span');
+                    dot.className = 'deploy-dot';
+                    dot.setAttribute('aria-hidden', 'true');
+
+                    const main = document.createElement('span');
+                    main.className = 'deploy-main';
+
+                    const title = document.createElement('strong');
+                    title.textContent = deployLabel(deploy);
+
+                    const date = document.createElement('small');
+                    date.textContent = formatDeployDate(deploy.createdAt || deploy.updatedAt);
+
+                    const state = document.createElement('span');
+                    state.className = 'deploy-state';
+                    state.textContent = deploy.status || 'unknown';
+
+                    main.append(title, date);
+                    item.append(dot, main, state);
+                    deployList.append(item);
+                });
+            } catch (error) {
+                deployStatus.textContent = error.message;
+            } finally {
+                refreshDeploys.disabled = false;
+            }
+        }
+
+        refreshDeploys.addEventListener('click', loadDeploys);
+        loadDeploys();
+    </script>
 </body>
 </html>

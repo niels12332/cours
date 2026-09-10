@@ -119,6 +119,43 @@ app.get('/api/meta', (req, res) => {
   res.json(siteData.meta);
 });
 
+app.get('/api/deploys', async (req, res) => {
+  const apiKey = process.env.RENDER_API_KEY;
+  const serviceId = process.env.RENDER_SERVICE_ID || 'srv-dahbflqjnfac7394cn9g';
+
+  if (!apiKey) {
+    return res.status(503).json({ error: 'RENDER_API_KEY is not configured' });
+  }
+
+  const requestedLimit = Number.parseInt(req.query.limit, 10);
+  const limit = Number.isInteger(requestedLimit) && requestedLimit > 0
+    ? Math.min(requestedLimit, 100)
+    : 20;
+
+  try {
+    const response = await fetch(
+      `https://api.render.com/v1/services/${serviceId}/deploys?limit=${limit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          Accept: 'application/json'
+        }
+      }
+    );
+
+    if (!response.ok) {
+      return res.status(response.status).json({
+        error: 'Render API request failed'
+      });
+    }
+
+    res.json(await response.json());
+  } catch (error) {
+    console.error('Render API request failed:', error.message);
+    res.status(502).json({ error: 'Unable to reach Render API' });
+  }
+});
+
 app.use(express.static(__dirname));
 
 app.get('*', (req, res, next) => {

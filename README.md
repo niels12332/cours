@@ -38,3 +38,18 @@ https://trs4-site.onrender.com
 - `/api/progression`
 - `/api/projects`
 - `/api/meta`
+- `/api/deploys?limit=20`
+
+### Déploiements Render
+
+La route `/api/deploys` appelle Render côté serveur. Configure les variables
+d'environnement suivantes dans Render ou dans ton terminal local :
+
+```bash
+RENDER_API_KEY=ta_cle_api_render
+RENDER_SERVICE_ID=srv-dahbflqjnfac7394cn9g
+```
+
+`RENDER_SERVICE_ID` est facultative si tu utilises le service déjà configuré
+dans `server.js`. La clé API ne doit pas être placée dans un fichier HTML ni
+envoyée au navigateur.
