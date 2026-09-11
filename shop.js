@@ -1,5 +1,23 @@
 const products = [
     {
+        id: 'hoodie-trs4', name: 'Hoodie TRS4', price: 64.9,
+        description: 'Hoodie épais avec logo TRS4 brodé, disponible en plusieurs couleurs.',
+        colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Vert signal', className: 'color-green' }, { name: 'Bleu', className: 'color-blue' }],
+        gradient: ['#111827', '#276749'], image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80'
+    },
+    {
+        id: 'tshirt-signal', name: 'T-shirt Signal', price: 24.9,
+        description: 'T-shirt TRS4 minimal, coupe quotidienne et logo intégré.',
+        colors: [{ name: 'Blanc', className: 'color-white' }, { name: 'Noir', className: 'color-black' }, { name: 'Vert signal', className: 'color-green' }],
+        gradient: ['#172d3c', '#5a9da5'], image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80'
+    },
+    {
+        id: 'shirt-protocol', name: 'Chemise Protocol', price: 49.9,
+        description: 'Chemise sobre avec détail TRS4, pensée pour les rendez-vous et présentations.',
+        colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Blanc', className: 'color-white' }],
+        gradient: ['#18222a', '#49717c'], image: 'https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80'
+    },
+    {
         id: 'mini-pc-lab',
         name: 'Mini PC Lab',
         price: 389,
@@ -52,6 +70,16 @@ const products = [
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Vert signal', className: 'color-green' }],
         gradient: ['#241a24', '#ad4b63'],
         image: 'https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=900&q=80'
+    },
+    {
+        id: 'pentest-audit', name: 'Pentest autorisé / devis', price: 0,
+        description: 'Audit cadré de ton site ou lab, avec périmètre écrit, restitution et recommandations. Tarif sur devis.',
+        colors: [{ name: 'Service', className: 'color-green' }], gradient: ['#241a24', '#ad4b63'], image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80', service: true
+    },
+    {
+        id: 'website-creation', name: 'Création de site / devis', price: 0,
+        description: 'Conception d’un site vitrine ou d’une interface personnalisée, selon ton projet. Tarif sur devis.',
+        colors: [{ name: 'Service', className: 'color-blue' }], gradient: ['#0c1022', '#315ca1'], image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=80', service: true
     }
 ];
 
@@ -73,6 +101,15 @@ const accountButton = document.querySelector('#account-button');
 const accountDialog = document.querySelector('#account-dialog');
 const accountForm = document.querySelector('#account-form');
 const accountMessage = document.querySelector('#account-message');
+const loginButton = document.querySelector('#login-button');
+const googleButton = document.querySelector('#google-button');
+const quoteButton = document.querySelector('#quote-button');
+const quoteDialog = document.querySelector('#quote-dialog');
+const quoteForm = document.querySelector('#quote-form');
+const quoteMessage = document.querySelector('#quote-message');
+const newsletterForm = document.querySelector('#newsletter-form');
+const newsletterMessage = document.querySelector('#newsletter-message');
+const videoMessage = document.querySelector('#video-message');
 
 function formatPrice(value) {
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value);
@@ -82,6 +119,10 @@ function renderProducts() {
     productGrid.replaceChildren();
 
     const query = searchInput.value.trim().toLocaleLowerCase('fr');
+    if (query === 'signal-314' || query === 'trs4-secret') {
+        window.location.href = 'signal.html';
+        return;
+    }
     const visibleProducts = products.filter((product) => `${product.name} ${product.description}`.toLocaleLowerCase('fr').includes(query));
 
     visibleProducts.forEach((product) => {
@@ -91,10 +132,10 @@ function renderProducts() {
             <div class="product-art" style="--product-dark: ${product.gradient[0]}; --product-light: ${product.gradient[1]}"><img src="${product.image}" alt="${product.name}" loading="lazy"></div>
             <div class="product-info">
                 <h2>${product.name}</h2>
-                <p class="product-price">${formatPrice(product.price)}</p>
+                <p class="product-price">${product.service ? 'Sur devis' : formatPrice(product.price)}</p>
                 <p class="product-description">${product.description}</p>
                 <div class="product-options">
-                    <label>Taille
+                    <label ${product.service ? 'hidden' : ''}>Taille
                         <select data-size>
                             ${sizes.map((size) => `<option value="${size}">${size}</option>`).join('')}
                         </select>
@@ -110,7 +151,7 @@ function renderProducts() {
                         </div>
                     </div>
                 </div>
-                <button class="button primary add-button" type="button" data-add="${product.id}">Ajouter au panier</button>
+                ${product.service ? `<button class="button primary quote-button" type="button" data-quote="${product.name}">Demander un devis</button>` : '<button class="button primary add-button" type="button" data-add="' + product.id + '">Ajouter au panier</button>'}
             </div>
         `;
         productGrid.append(card);
@@ -148,6 +189,12 @@ function renderCart() {
 }
 
 productGrid.addEventListener('click', (event) => {
+    const quote = event.target.closest('[data-quote]');
+    if (quote) {
+        quoteDialog.showModal();
+        quoteForm.querySelector('[name="service"]').value = quote.dataset.quote.includes('Pentest') ? 'Pentest autorisé' : 'Création de site';
+        return;
+    }
     const button = event.target.closest('[data-add]');
     if (!button) return;
 
@@ -190,12 +237,42 @@ paymentForm.addEventListener('submit', (event) => {
 
 searchInput.addEventListener('input', renderProducts);
 accountButton.addEventListener('click', () => accountDialog.showModal());
-accountForm.addEventListener('submit', (event) => {
+async function submitAuth(endpoint) {
+    const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(accountForm))) });
+    const payload = await response.json();
+    accountMessage.textContent = payload.message || payload.error;
+}
+
+accountForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const email = document.querySelector('#account-email').value.trim();
-    localStorage.setItem('trs4-demo-account', email);
-    accountMessage.textContent = `Session locale ouverte pour ${email}.`;
-    accountForm.reset();
+    try { await submitAuth('/api/auth/register'); } catch (error) { accountMessage.textContent = 'API indisponible pour le moment.'; }
+});
+
+loginButton.addEventListener('click', async () => {
+    try { await submitAuth('/api/auth/login'); } catch (error) { accountMessage.textContent = 'API indisponible pour le moment.'; }
+});
+
+googleButton.addEventListener('click', () => {
+    accountMessage.textContent = 'Google OAuth nécessite un Client ID et une URL de callback configurés dans Render.';
+});
+
+quoteButton.addEventListener('click', () => quoteDialog.showModal());
+quoteForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const response = await fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(quoteForm))) });
+    const payload = await response.json();
+    quoteMessage.textContent = payload.message || payload.error;
+});
+
+newsletterForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const response = await fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(newsletterForm))) });
+    const payload = await response.json();
+    newsletterMessage.textContent = payload.message || payload.error;
+});
+
+document.querySelector('#video-button').addEventListener('click', () => {
+    videoMessage.textContent = 'Aperçu gratuit : la vidéo complète sera activée après mise en place d’un vrai paiement sécurisé.';
 });
 
 renderProducts();

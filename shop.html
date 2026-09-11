@@ -55,6 +55,11 @@
             <a href="lab.html#contact"><strong>Contact</strong><span>Une question sur le matériel ?</span></a>
         </section>
 
+        <section class="shop-services" aria-labelledby="services-title">
+            <div><p class="eyebrow">Services / sur devis</p><h2 id="services-title">Un projet à construire ?</h2><p>Décris ton besoin pour recevoir une réponse sur un audit autorisé ou la création d’un site.</p></div>
+            <button class="button primary" id="quote-button" type="button">Décrire mon projet</button>
+        </section>
+
         <section class="shop-layout" aria-label="Boutique">
             <div class="product-grid" id="product-grid"></div>
 
@@ -74,6 +79,17 @@
                 </div>
                 <button class="button primary checkout-button" id="checkout-button" type="button" disabled>Passer au paiement</button>
             </aside>
+        </section>
+
+        <section class="newsletter-panel" aria-labelledby="newsletter-title">
+            <div><p class="eyebrow">Signal / newsletter</p><h2 id="newsletter-title">Recevoir les nouveautés</h2></div>
+            <form id="newsletter-form" class="newsletter-form"><input type="email" name="email" required placeholder="ton@email.fr" aria-label="Adresse e-mail newsletter"><button class="button secondary" type="submit">S’inscrire</button></form>
+            <p id="newsletter-message" role="status"></p>
+        </section>
+
+        <section class="video-panel" aria-labelledby="video-title">
+            <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1200&q=80" alt="Poste vidéo et caméra, aperçu de la vidéo TRS4" loading="lazy">
+            <div><p class="eyebrow">Vidéo / accès payant</p><h2 id="video-title">Monter son premier home lab</h2><p>Une vidéo de démonstration à venir, présentée avec un visuel générique. Aucun achat réel n’est activé dans cette version.</p><button class="button primary" type="button" id="video-button">Voir l’aperçu</button><p id="video-message" role="status"></p></div>
         </section>
 
         <section class="payment-panel" id="payment-panel" aria-labelledby="payment-title" hidden>
@@ -104,11 +120,27 @@
         <form method="dialog" class="account-card" id="account-form">
             <button class="dialog-close" value="cancel" aria-label="Fermer">×</button>
             <p class="eyebrow">Espace local / démo</p>
-            <h2 id="account-title">Créer ton compte</h2>
-            <p>Cette version garde les données dans ton navigateur. Aucun mot de passe n’est envoyé à un service externe.</p>
-            <label>Adresse e-mail<input id="account-email" type="email" autocomplete="email" required placeholder="toi@example.com"></label>
-            <button class="button primary" value="default" type="submit">Continuer</button>
+            <h2 id="account-title">Compte TRS4</h2>
+            <p>Crée un compte avec un mot de passe. Un lien de vérification sera envoyé quand SMTP sera configuré.</p>
+            <label>Adresse e-mail<input id="account-email" name="email" type="email" autocomplete="email" required placeholder="toi@example.com"></label>
+            <label>Mot de passe<input id="account-password" name="password" type="password" minlength="8" autocomplete="new-password" required placeholder="8 caractères minimum"></label>
+            <div class="account-actions"><button class="button primary" value="default" type="submit">Créer et vérifier</button><button class="button secondary" type="button" id="login-button">Se connecter</button></div>
+            <button class="button google-button" type="button" id="google-button">Continuer avec Google (OAuth à configurer)</button>
             <p class="account-message" id="account-message" role="status"></p>
+        </form>
+    </dialog>
+
+    <dialog class="quote-dialog" id="quote-dialog" aria-labelledby="quote-title">
+        <form method="dialog" class="account-card" id="quote-form">
+            <button class="dialog-close" value="cancel" aria-label="Fermer">×</button>
+            <p class="eyebrow">Brief / projet</p>
+            <h2 id="quote-title">Décris ton projet</h2>
+            <label>Nom<input name="name" required placeholder="Ton nom"></label>
+            <label>E-mail<input name="email" type="email" required placeholder="toi@example.com"></label>
+            <label>Service<select name="service"><option>Pentest autorisé</option><option>Création de site</option></select></label>
+            <label>Projet<textarea name="project" rows="5" required placeholder="Objectif, périmètre, délais, contraintes..."></textarea></label>
+            <button class="button primary" value="default" type="submit">Envoyer le brief</button>
+            <p id="quote-message" role="status"></p>
         </form>
     </dialog>
 

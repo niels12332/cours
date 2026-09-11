@@ -1,8 +1,30 @@
 const express = require('express');
 const path = require('path');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'theo.rslllhck@trs4.com';
+const mailer = process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS
+  ? nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT || 587),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
+    })
+  : null;
+const accounts = new Map();
+
+function requiredFields(body, fields) {
+  return fields.every((field) => typeof body[field] === 'string' && body[field].trim());
+}
+
+async function sendMessage({ replyTo, subject, text }) {
+  if (!mailer) return false;
+  await mailer.sendMail({ from: process.env.SMTP_FROM || CONTACT_EMAIL, to: CONTACT_EMAIL, replyTo, subject, text });
+  return true;
+}
 
 const siteData = {
   profile: {
@@ -94,6 +116,81 @@ const siteData = {
 };
 
 app.use(express.json());
+
+app.post('/api/contact', async (req, res) => {
+  if (!requiredFields(req.body, ['name', 'email', 'message'])) {
+    return res.status(400).json({ error: 'Nom, e-mail et message requis.' });
+  }
+  try {
+    const sent = await sendMessage({
+      replyTo: req.body.email,
+      subject: `[TRS4 contact] ${req.body.name}`,
+      text: `Nom : ${req.body.name}\nE-mail : ${req.body.email}\n\n${req.body.message}`
+    });
+    res.status(sent ? 200 : 503).json({ sent, message: sent ? 'Message envoyé.' : 'SMTP non configuré dans Render.' });
+  } catch (error) {
+    console.error('Contact mail failed:', error.message);
+    res.status(502).json({ error: 'Impossible d’envoyer le message.' });
+  }
+});
+
+app.post('/api/quote', async (req, res) => {
+  if (!requiredFields(req.body, ['name', 'email', 'service', 'project'])) {
+    return res.status(400).json({ error: 'Tous les champs du devis sont requis.' });
+  }
+  try {
+    const sent = await sendMessage({
+      replyTo: req.body.email,
+      subject: `[TRS4 devis] ${req.body.service} - ${req.body.name}`,
+      text: `Nom : ${req.body.name}\nE-mail : ${req.body.email}\nService : ${req.body.service}\n\nProjet :\n${req.body.project}`
+    });
+    res.status(sent ? 200 : 503).json({ sent, message: sent ? 'Demande de devis envoyée.' : 'SMTP non configuré dans Render.' });
+  } catch (error) {
+    console.error('Quote mail failed:', error.message);
+    res.status(502).json({ error: 'Impossible d’envoyer la demande.' });
+  }
+});
+
+app.post('/api/newsletter', async (req, res) => {
+  if (!requiredFields(req.body, ['email'])) return res.status(400).json({ error: 'Adresse e-mail requise.' });
+  try {
+    const sent = await sendMessage({ replyTo: req.body.email, subject: '[TRS4 newsletter] Nouvelle inscription', text: `Inscription : ${req.body.email}` });
+    res.status(sent ? 200 : 503).json({ sent, message: sent ? 'Inscription enregistrée.' : 'SMTP non configuré dans Render.' });
+  } catch (error) {
+    res.status(502).json({ error: 'Impossible d’enregistrer l’inscription.' });
+  }
+});
+
+app.post('/api/auth/register', async (req, res) => {
+  if (!requiredFields(req.body, ['email', 'password']) || req.body.password.length < 8) {
+    return res.status(400).json({ error: 'E-mail requis et mot de passe de 8 caractères minimum.' });
+  }
+  const email = req.body.email.trim().toLowerCase();
+  if (accounts.has(email)) return res.status(409).json({ error: 'Ce compte existe déjà.' });
+  const token = crypto.randomBytes(24).toString('hex');
+  const passwordHash = crypto.scryptSync(req.body.password, process.env.AUTH_SALT || 'trs4-local-salt', 32).toString('hex');
+  accounts.set(email, { passwordHash, token, verified: false });
+  const sent = await sendMessage({ replyTo: email, subject: '[TRS4] Vérifie ton adresse e-mail', text: `Lien de vérification : ${process.env.PUBLIC_URL || 'http://localhost:3000'}/api/auth/verify?email=${encodeURIComponent(email)}&token=${token}` });
+  res.status(201).json({ sent, message: sent ? 'Vérifie ta boîte mail.' : 'Compte créé. Configure SMTP pour recevoir le lien.' });
+});
+
+app.get('/api/auth/verify', (req, res) => {
+  const account = accounts.get(String(req.query.email || '').toLowerCase());
+  if (!account || account.token !== req.query.token) return res.status(400).send('Lien de vérification invalide.');
+  account.verified = true;
+  account.token = null;
+  res.send('Adresse vérifiée. Tu peux revenir sur www.trs4.com.');
+});
+
+app.post('/api/auth/login', (req, res) => {
+  const email = String(req.body.email || '').trim().toLowerCase();
+  const account = accounts.get(email);
+  if (!account || !requiredFields(req.body, ['password'])) return res.status(401).json({ error: 'Identifiants invalides.' });
+  const hash = crypto.scryptSync(req.body.password, process.env.AUTH_SALT || 'trs4-local-salt', 32).toString('hex');
+  if (hash !== account.passwordHash) return res.status(401).json({ error: 'Identifiants invalides.' });
+  if (!account.verified) return res.status(403).json({ error: 'Adresse e-mail non vérifiée.' });
+  res.json({ authenticated: true, email });
+});
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'www.trs4.com', api: 'v1' });

@@ -87,6 +87,33 @@ propagation DNS. Tant que `www.trs4.com` n’a pas ce CNAME, il affichera
 - `/api/projects`
 - `/api/meta`
 - `/api/deploys?limit=20`
+- `POST /api/contact`
+- `POST /api/quote`
+- `POST /api/newsletter`
+- `POST /api/auth/register`, `GET /api/auth/verify`, `POST /api/auth/login`
+
+### Réception des messages
+
+Copie `.env.example` vers un environnement local ou ajoute ces variables dans
+Render. Le fichier `.env.example` ne contient aucun secret réel. Il faut
+utiliser le serveur SMTP du fournisseur de la boîte `theo.rslllhck@trs4.com` :
+
+```text
+CONTACT_EMAIL=theo.rslllhck@trs4.com
+SMTP_HOST=serveur SMTP du fournisseur
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=theo.rslllhck@trs4.com
+SMTP_PASS=mot de passe SMTP ou mot de passe d’application
+SMTP_FROM=theo.rslllhck@trs4.com
+PUBLIC_URL=https://www.trs4.com
+AUTH_SALT=une longue valeur aléatoire
+```
+
+Sans ces variables, les formulaires répondent proprement mais ne peuvent pas
+envoyer de mail. Le mot de passe SMTP ne doit jamais être placé dans GitHub.
+L’authentification Google nécessite en plus un identifiant OAuth créé dans
+Google Cloud ; elle ne doit pas être simulée avec un simple bouton HTML.
 
 ### Déploiements Render
 

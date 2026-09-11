@@ -92,6 +92,12 @@
                 “Le vrai pouvoir ne vient pas d’un clavier noir. Il vient de la compréhension.”
             </blockquote>
         </section>
+
+        <section class="secret-teaser" aria-label="Indice secret">
+            <p class="eyebrow">Message système</p>
+            <p>Il existe une page cachée dans le site. À toi de trouver le signal.</p>
+            <button class="button secondary" id="secret-hint" type="button">Afficher l’indice</button>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -100,6 +106,8 @@
             <span>Credit by www.trs4.com</span>
         </div>
     </footer>
+
+    <dialog class="hint-dialog" id="hint-dialog"><form method="dialog" class="account-card"><button class="dialog-close" value="cancel" aria-label="Fermer">×</button><p class="eyebrow">Easter egg / indice 01</p><h2>La recherche écoute aussi.</h2><p>Certains mots de passe de démonstration ouvrent une page pédagogique. Rien ne contourne une protection réelle.</p><button class="button primary" value="default">Compris</button></form></dialog>
 
     <script>
         const deployStatus = document.querySelector('#deploy-status');
@@ -172,6 +180,7 @@
 
         refreshDeploys.addEventListener('click', loadDeploys);
         loadDeploys();
+        document.querySelector('#secret-hint').addEventListener('click', () => document.querySelector('#hint-dialog').showModal());
     </script>
 </body>
 </html>
