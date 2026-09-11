@@ -118,7 +118,7 @@
 
     <dialog class="account-dialog" id="account-dialog" aria-labelledby="account-title">
         <form method="dialog" class="account-card" id="account-form">
-            <button class="dialog-close" value="cancel" aria-label="Fermer">×</button>
+            <button class="dialog-close" type="button" data-close-dialog="account-dialog" aria-label="Fermer">×</button>
             <p class="eyebrow">Espace local / démo</p>
             <h2 id="account-title">Compte TRS4</h2>
             <p>Crée un compte avec un mot de passe. Un lien de vérification sera envoyé quand SMTP sera configuré.</p>
@@ -132,7 +132,7 @@
 
     <dialog class="quote-dialog" id="quote-dialog" aria-labelledby="quote-title">
         <form method="dialog" class="account-card" id="quote-form">
-            <button class="dialog-close" value="cancel" aria-label="Fermer">×</button>
+            <button class="dialog-close" type="button" data-close-dialog="quote-dialog" aria-label="Fermer">×</button>
             <p class="eyebrow">Brief / projet</p>
             <h2 id="quote-title">Décris ton projet</h2>
             <label>Nom<input name="name" required placeholder="Ton nom"></label>
@@ -142,6 +142,24 @@
             <button class="button primary" value="default" type="submit">Envoyer le brief</button>
             <p id="quote-message" role="status"></p>
         </form>
+    </dialog>
+
+    <dialog class="product-dialog" id="product-dialog" aria-labelledby="product-dialog-title">
+        <article class="product-detail" id="product-detail">
+            <button class="dialog-close" type="button" data-close-dialog="product-dialog" aria-label="Fermer">×</button>
+            <img id="product-dialog-image" src="" alt="">
+            <div class="product-detail-copy">
+                <p class="eyebrow">Fiche produit / traçabilité</p>
+                <h2 id="product-dialog-title"></h2>
+                <p class="product-dialog-price" id="product-dialog-price"></p>
+                <p id="product-dialog-description"></p>
+                <dl class="product-facts">
+                    <div><dt>Design</dt><dd id="product-dialog-design"></dd></div>
+                    <div><dt>Fabrication</dt><dd id="product-dialog-production"></dd></div>
+                    <div><dt>Usage</dt><dd id="product-dialog-usage"></dd></div>
+                </dl>
+            </div>
+        </article>
     </dialog>
 
     <footer class="site-footer">

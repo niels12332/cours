@@ -2,18 +2,21 @@ const products = [
     {
         id: 'hoodie-trs4', name: 'Hoodie TRS4', price: 64.9,
         description: 'Hoodie épais avec logo TRS4 brodé, disponible en plusieurs couleurs.',
+        design: 'Design TRS4 imaginé à Nancy.', production: 'Confection textile en série, logo brodé.', usage: 'Vêtement dérivé.',
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Vert signal', className: 'color-green' }, { name: 'Bleu', className: 'color-blue' }],
         gradient: ['#111827', '#276749'], image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80'
     },
     {
         id: 'tshirt-signal', name: 'T-shirt Signal', price: 24.9,
         description: 'T-shirt TRS4 minimal, coupe quotidienne et logo intégré.',
+        design: 'Design TRS4 imaginé à Nancy.', production: 'Coton imprimé par atelier textile.', usage: 'Vêtement dérivé.',
         colors: [{ name: 'Blanc', className: 'color-white' }, { name: 'Noir', className: 'color-black' }, { name: 'Vert signal', className: 'color-green' }],
         gradient: ['#172d3c', '#5a9da5'], image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80'
     },
     {
         id: 'shirt-protocol', name: 'Chemise Protocol', price: 49.9,
         description: 'Chemise sobre avec détail TRS4, pensée pour les rendez-vous et présentations.',
+        design: 'Design TRS4 imaginé à Nancy.', production: 'Confection textile et détail brodé.', usage: 'Vêtement dérivé.',
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Blanc', className: 'color-white' }],
         gradient: ['#18222a', '#49717c'], image: 'https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80'
     },
@@ -22,6 +25,7 @@ const products = [
         name: 'Mini PC Lab',
         price: 389,
         description: 'Machine dédiée aux VM, à la journalisation et aux exercices isolés. Aucune attaque sur un système tiers.',
+        design: 'Sélection TRS4 pour un poste compact.', production: 'Matériel assemblé par le fabricant.', usage: 'Home lab isolé.',
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Bleu', className: 'color-blue' }],
         gradient: ['#0b1728', '#1b805f'],
         image: 'https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=900&q=80'
@@ -31,6 +35,7 @@ const products = [
         name: 'Raspberry Pi Lab Kit',
         price: 119,
         description: 'Carte, boîtier, alimentation et stockage pour héberger des services d’apprentissage et des prototypes réseau.',
+        design: 'Kit configuré pour les débutants.', production: 'Composants électroniques du fabricant.', usage: 'Prototypes et services de lab.',
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Bleu', className: 'color-blue' }],
         gradient: ['#0c1022', '#315ca1'],
         image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=900&q=80'
@@ -40,6 +45,7 @@ const products = [
         name: 'Switch manageable 8 ports',
         price: 79,
         description: 'Pour séparer les VLAN de test, observer les flux et garder le lab isolé du réseau familial.',
+        design: 'Sélection réseau TRS4.', production: 'Équipement réseau du fabricant.', usage: 'Segmentation et observation réseau.',
         colors: [{ name: 'Blanc', className: 'color-white' }, { name: 'Noir', className: 'color-black' }],
         gradient: ['#172d3c', '#5a9da5'],
         image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80'
@@ -49,6 +55,7 @@ const products = [
         name: 'Écran 24 pouces IPS',
         price: 149,
         description: 'Écran confortable pour suivre les logs, la documentation et plusieurs terminaux sans fatigue.',
+        design: 'Poste de travail sobre.', production: 'Électronique du fabricant.', usage: 'Documentation et supervision.',
         colors: [{ name: 'Noir', className: 'color-black' }],
         gradient: ['#241a24', '#ad4b63'],
         image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=900&q=80'
@@ -58,6 +65,7 @@ const products = [
         name: 'Clavier mécanique compact',
         price: 69,
         description: 'Périphérique filaire précis pour écrire du code et administrer les machines du lab.',
+        design: 'Configuration compacte TRS4.', production: 'Périphérique assemblé par le fabricant.', usage: 'Code et administration.',
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Blanc', className: 'color-white' }],
         gradient: ['#18222a', '#49717c'],
         image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=80'
@@ -67,6 +75,7 @@ const products = [
         name: 'Adaptateur réseau USB',
         price: 29,
         description: 'Interface supplémentaire pour les exercices réseau contrôlés et la capture sur son propre environnement.',
+        design: 'Accessoire sélectionné pour le lab.', production: 'Électronique du fabricant.', usage: 'Exercices sur environnement autorisé.',
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Vert signal', className: 'color-green' }],
         gradient: ['#241a24', '#ad4b63'],
         image: 'https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=900&q=80'
@@ -74,11 +83,13 @@ const products = [
     {
         id: 'pentest-audit', name: 'Pentest autorisé / devis', price: 0,
         description: 'Audit cadré de ton site ou lab, avec périmètre écrit, restitution et recommandations. Tarif sur devis.',
+        design: 'Méthode TRS4 documentée.', production: 'Prestation réalisée sur devis.', usage: 'Audit autorisé uniquement.',
         colors: [{ name: 'Service', className: 'color-green' }], gradient: ['#241a24', '#ad4b63'], image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80', service: true
     },
     {
         id: 'website-creation', name: 'Création de site / devis', price: 0,
         description: 'Conception d’un site vitrine ou d’une interface personnalisée, selon ton projet. Tarif sur devis.',
+        design: 'Direction artistique adaptée au projet.', production: 'Création numérique sur mesure.', usage: 'Site vitrine ou interface.',
         colors: [{ name: 'Service', className: 'color-blue' }], gradient: ['#0c1022', '#315ca1'], image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=80', service: true
     }
 ];
@@ -110,6 +121,7 @@ const quoteMessage = document.querySelector('#quote-message');
 const newsletterForm = document.querySelector('#newsletter-form');
 const newsletterMessage = document.querySelector('#newsletter-message');
 const videoMessage = document.querySelector('#video-message');
+const productDialog = document.querySelector('#product-dialog');
 
 function formatPrice(value) {
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value);
@@ -154,6 +166,7 @@ function renderProducts() {
                 ${product.service ? `<button class="button primary quote-button" type="button" data-quote="${product.name}">Demander un devis</button>` : '<button class="button primary add-button" type="button" data-add="' + product.id + '">Ajouter au panier</button>'}
             </div>
         `;
+        card.dataset.productId = product.id;
         productGrid.append(card);
     });
 
@@ -196,7 +209,12 @@ productGrid.addEventListener('click', (event) => {
         return;
     }
     const button = event.target.closest('[data-add]');
-    if (!button) return;
+    if (!button) {
+        if (event.target.closest('select, input, label, button')) return;
+        const card = event.target.closest('[data-product-id]');
+        if (card) openProduct(card.dataset.productId);
+        return;
+    }
 
     const product = products.find((entry) => entry.id === button.dataset.add);
     const card = button.closest('.product-card');
@@ -214,6 +232,20 @@ productGrid.addEventListener('click', (event) => {
     button.textContent = 'Ajouté';
     window.setTimeout(() => { button.textContent = 'Ajouter au panier'; }, 900);
 });
+
+function openProduct(productId) {
+    const product = products.find((entry) => entry.id === productId);
+    if (!product) return;
+    document.querySelector('#product-dialog-image').src = product.image;
+    document.querySelector('#product-dialog-image').alt = product.name;
+    document.querySelector('#product-dialog-title').textContent = product.name;
+    document.querySelector('#product-dialog-price').textContent = product.service ? 'Sur devis' : formatPrice(product.price);
+    document.querySelector('#product-dialog-description').textContent = product.description;
+    document.querySelector('#product-dialog-design').textContent = product.design;
+    document.querySelector('#product-dialog-production').textContent = product.production;
+    document.querySelector('#product-dialog-usage').textContent = product.usage;
+    productDialog.showModal();
+}
 
 cartItems.addEventListener('click', (event) => {
     const button = event.target.closest('[data-remove]');
@@ -273,6 +305,16 @@ newsletterForm.addEventListener('submit', async (event) => {
 
 document.querySelector('#video-button').addEventListener('click', () => {
     videoMessage.textContent = 'Aperçu gratuit : la vidéo complète sera activée après mise en place d’un vrai paiement sécurisé.';
+});
+
+document.querySelectorAll('[data-close-dialog]').forEach((button) => {
+    button.addEventListener('click', () => document.querySelector(`#${button.dataset.closeDialog}`).close());
+});
+
+document.querySelectorAll('dialog').forEach((dialog) => {
+    dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) dialog.close();
+    });
 });
 
 renderProducts();
