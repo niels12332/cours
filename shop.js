@@ -28,7 +28,7 @@ const products = [
         design: 'Sélection TRS4 pour un poste compact.', production: 'Matériel assemblé par le fabricant.', usage: 'Home lab isolé.',
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Bleu', className: 'color-blue' }],
         gradient: ['#0b1728', '#1b805f'],
-        image: 'https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=900&q=80'
+        image: 'image/16fc42fc-tuf-dash-f15_png__1200_678__2-0-1873-1055.jpg.png'
     },
     {
         id: 'raspberry-pi-kit',
@@ -38,7 +38,7 @@ const products = [
         design: 'Kit configuré pour les débutants.', production: 'Composants électroniques du fabricant.', usage: 'Prototypes et services de lab.',
         colors: [{ name: 'Noir', className: 'color-black' }, { name: 'Bleu', className: 'color-blue' }],
         gradient: ['#0c1022', '#315ca1'],
-        image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=900&q=80'
+        image: 'image/A300-PI-C_01.jpg'
     },
     {
         id: 'managed-switch',
@@ -48,7 +48,7 @@ const products = [
         design: 'Sélection réseau TRS4.', production: 'Équipement réseau du fabricant.', usage: 'Segmentation et observation réseau.',
         colors: [{ name: 'Blanc', className: 'color-white' }, { name: 'Noir', className: 'color-black' }],
         gradient: ['#172d3c', '#5a9da5'],
-        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80'
+        image: 'image/f9148aec85284b15f2d324ada868650181dc6aeb.jpg'
     },
     {
         id: 'monitor-24',

@@ -40,27 +40,27 @@ const siteData = {
     {
       title: 'MacBook',
       description: 'Machine principale pour le développement, la création et le suivi du travail quotidien.',
-      image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80'
+      image: 'image/16fc42fc-tuf-dash-f15_png__1200_678__2-0-1873-1055.jpg.png'
     },
     {
       title: 'Asus + Kali Linux',
       description: 'Environnement technique pour l’analyse réseau, les outils de sécurité et les manipulations en sandbox.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80'
+      image: 'image/16fc42fc-tuf-dash-f15_png__1200_678__2-0-1873-1055.jpg.png'
     },
     {
       title: 'Raspberry Pi',
       description: 'Plateforme compacte pour tester des configurations, des protocoles et des scénarios de réseau.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80'
+      image: 'image/A300-PI-C_01.jpg'
     },
     {
       title: 'Switchs',
       description: 'Utilisés pour simuler des échanges, faire des tests de topologie et comprendre les flux de données.',
-      image: 'https://images.unsplash.com/photo-1558494949cc0b7f4af1b0a1e2b7f58b8?auto=format&fit=crop&w=900&q=80'
+      image: 'image/f9148aec85284b15f2d324ada868650181dc6aeb.jpg'
     },
     {
       title: 'Mon cerveau',
       description: 'Le vrai moteur du projet : analyse, réflexion, logique et capacité à concevoir des solutions concrètes.',
-      image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=900&q=80'
+      image: 'image/23807017.jpg-2.webp'
     }
   ],
   progression: [
