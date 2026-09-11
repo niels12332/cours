@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: trs4-site
+    name: trs4.com
     env: node
     region: frankfurt
     plan: free

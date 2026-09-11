@@ -96,7 +96,7 @@ const siteData = {
 app.use(express.json());
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'trs4-site' });
+  res.json({ status: 'ok', service: 'trs4.com' });
 });
 
 app.get('/api/profile', (req, res) => {
@@ -166,5 +166,5 @@ app.get('*', (req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`TRS4 site running on http://localhost:${PORT}`);
+  console.log(`TRS4 site running for https://www.trs4.com (local: http://localhost:${PORT})`);
 });

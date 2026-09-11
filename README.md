@@ -1,4 +1,4 @@
-# TRS4 Site
+# www.trs4.com
 
 Site personnel avec API Express.
 
@@ -27,7 +27,7 @@ http://localhost:3000
 Le site sera accessible via une URL Render gratuite, par exemple :
 
 ```text
-https://trs4-site.onrender.com
+https://www.trs4.com
 ```
 
 ## API
