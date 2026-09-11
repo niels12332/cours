@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>www.trs4.com // Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="niels.css">
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <div class="brand-wrap">
+                <img src="image/trs4-logo.svg" alt="Logo www.trs4.com" class="brand-logo">
+                <div class="brand">www.trs4.com</div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="materiel.html">Matériel</a>
+                <a href="progression.html">Progression</a>
+                <a href="projets.html">Projets</a>
+                <a href="shop.html" aria-current="page">Shop</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content shop-page">
+        <section class="shop-intro">
+            <div>
+                <p class="eyebrow">Shop / signal / drop 01</p>
+                <h1>Wear the signal.</h1>
+                <p>Des pièces en édition limitée pour celles et ceux qui avancent avec curiosité, précision et un peu de bruit numérique.</p>
+            </div>
+            <div class="shop-summary" aria-live="polite">
+                <span class="summary-label">Panier</span>
+                <strong id="cart-count">0 article</strong>
+                <span id="cart-total">0,00 €</span>
+            </div>
+        </section>
+
+        <section class="shop-layout" aria-label="Boutique">
+            <div class="product-grid" id="product-grid"></div>
+
+            <aside class="cart-panel" aria-labelledby="cart-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Checkout / sandbox</p>
+                        <h2 id="cart-title">Ton panier</h2>
+                    </div>
+                    <span class="cart-count-badge" id="cart-badge">0</span>
+                </div>
+                <div class="cart-items" id="cart-items" aria-live="polite"></div>
+                <div class="cart-empty" id="cart-empty">Ton panier est vide.</div>
+                <div class="cart-total-row">
+                    <span>Total</span>
+                    <strong id="cart-total-detail">0,00 €</strong>
+                </div>
+                <button class="button primary checkout-button" id="checkout-button" type="button" disabled>Passer au paiement</button>
+            </aside>
+        </section>
+
+        <section class="payment-panel" id="payment-panel" aria-labelledby="payment-title" hidden>
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Paiement / simulation</p>
+                    <h2 id="payment-title">Finaliser la commande</h2>
+                </div>
+                <span class="fake-badge">FAKE CHECKOUT</span>
+            </div>
+            <p class="payment-note">Cette interface est une démonstration : aucune transaction et aucune donnée bancaire ne sont envoyées.</p>
+            <form class="payment-form" id="payment-form">
+                <label>Nom complet<input name="name" type="text" autocomplete="name" required placeholder="Niels Dupont"></label>
+                <label>Adresse e-mail<input name="email" type="email" autocomplete="email" required placeholder="niels@example.com"></label>
+                <label>Adresse de livraison<input name="address" type="text" autocomplete="street-address" required placeholder="12 rue du Signal"></label>
+                <label>Numéro de carte fictif<input name="card" inputmode="numeric" pattern="[0-9 ]{16,19}" maxlength="19" required placeholder="4242 4242 4242 4242"></label>
+                <div class="payment-fields">
+                    <label>Expiration<input name="expiry" type="text" pattern="(0[1-9]|1[0-2])/[0-9]{2}" maxlength="5" required placeholder="12/30"></label>
+                    <label>CVV<input name="cvv" type="text" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" required placeholder="123"></label>
+                </div>
+                <button class="button primary" type="submit">Simuler le paiement</button>
+                <p class="payment-message" id="payment-message" role="status"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="credit-box">
+            <span class="credit-mark">R</span>
+            <span>Credit by www.trs4.com</span>
+        </div>
+    </footer>
+
+    <script src="shop.js"></script>
+</body>
+</html>
