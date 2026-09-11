@@ -100,9 +100,9 @@ utiliser le serveur SMTP du fournisseur de la boîte `theo.rslllhck@trs4.com` :
 
 ```text
 CONTACT_EMAIL=theo.rslllhck@trs4.com
-SMTP_HOST=serveur SMTP du fournisseur
-SMTP_PORT=587
-SMTP_SECURE=false
+SMTP_HOST=smtp.ionos.fr
+SMTP_PORT=465
+SMTP_SECURE=true
 SMTP_USER=theo.rslllhck@trs4.com
 SMTP_PASS=mot de passe SMTP ou mot de passe d’application
 SMTP_FROM=theo.rslllhck@trs4.com
