@@ -20,6 +20,7 @@
             <div class="nav-links">
                 <a href="index.html">Accueil</a>
                 <a href="materiel.html">Matériel</a>
+                <a href="lab.html">Home lab</a>
                 <a href="progression.html">Progression</a>
                 <a href="projets.html">Projets</a>
                 <a href="shop.html" aria-current="page">Shop</a>
@@ -30,15 +31,28 @@
     <main class="page-content shop-page">
         <section class="shop-intro">
             <div>
-                <p class="eyebrow">Shop / signal / drop 01</p>
-                <h1>Wear the signal.</h1>
-                <p>Des pièces en édition limitée pour celles et ceux qui avancent avec curiosité, précision et un peu de bruit numérique.</p>
+                <p class="eyebrow">Shop / lab / équipement vérifié</p>
+                <h1>Construis ton poste.</h1>
+                <p>Du matériel pour apprendre les réseaux, développer et tester des scénarios de sécurité dans un lab qui t’appartient.</p>
             </div>
             <div class="shop-summary" aria-live="polite">
                 <span class="summary-label">Panier</span>
                 <strong id="cart-count">0 article</strong>
                 <span id="cart-total">0,00 €</span>
             </div>
+        </section>
+
+        <section class="shop-tools" aria-label="Recherche et compte">
+            <label class="search-field">Rechercher dans la boutique et la documentation
+                <input id="shop-search" type="search" placeholder="Raspberry Pi, réseau..." autocomplete="off">
+            </label>
+            <button class="button secondary" id="account-button" type="button">Compte / connexion</button>
+        </section>
+
+        <section class="resource-strip" aria-label="Ressources rapides">
+            <a href="lab.html#documentation"><strong>Documentation</strong><span>Fiches et parcours de lab</span></a>
+            <a href="lab.html#methodes"><strong>Méthodes de pentest</strong><span>Reconnaissance, audit et restitution</span></a>
+            <a href="lab.html#contact"><strong>Contact</strong><span>Une question sur le matériel ?</span></a>
         </section>
 
         <section class="shop-layout" aria-label="Boutique">
@@ -85,6 +99,18 @@
             </form>
         </section>
     </main>
+
+    <dialog class="account-dialog" id="account-dialog" aria-labelledby="account-title">
+        <form method="dialog" class="account-card" id="account-form">
+            <button class="dialog-close" value="cancel" aria-label="Fermer">×</button>
+            <p class="eyebrow">Espace local / démo</p>
+            <h2 id="account-title">Créer ton compte</h2>
+            <p>Cette version garde les données dans ton navigateur. Aucun mot de passe n’est envoyé à un service externe.</p>
+            <label>Adresse e-mail<input id="account-email" type="email" autocomplete="email" required placeholder="toi@example.com"></label>
+            <button class="button primary" value="default" type="submit">Continuer</button>
+            <p class="account-message" id="account-message" role="status"></p>
+        </form>
+    </dialog>
 
     <footer class="site-footer">
         <div class="credit-box">

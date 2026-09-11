@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>www.trs4.com // Home lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="niels.css">
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+<header class="site-header"><nav class="nav">
+    <div class="brand-wrap"><img src="image/trs4-logo.svg" alt="Logo TRS4" class="brand-logo"><div class="brand">www.trs4.com</div></div>
+    <div class="nav-links"><a href="index.html">Accueil</a><a href="materiel.html">Matériel</a><a href="lab.html" aria-current="page">Home lab</a><a href="progression.html">Progression</a><a href="projets.html">Projets</a><a href="shop.html">Shop</a></div>
+</nav></header>
+<main class="page-content shop-page">
+    <section class="shop-intro"><div><p class="eyebrow">Home lab / architecture responsable</p><h1>Un terrain de jeu à toi.</h1><p>Un home lab sert à apprendre sans toucher aux systèmes d’autrui : machines virtuelles, réseau isolé, snapshots et journalisation avant toute expérience.</p></div><div class="shop-summary"><span class="summary-label">Règle zéro</span><strong>Autorisation</strong><span>Lab isolé</span></div></section>
+    <section class="two-columns lab-columns" id="documentation">
+        <article class="panel"><p class="eyebrow">01 / architecture</p><h2>Le kit de départ</h2><p>Commence avec un mini PC ou un ordinateur de récupération, 16 Go de RAM, un SSD, un hyperviseur, un switch manageable et un routeur séparé. Le Raspberry Pi peut héberger un service léger ou un capteur de test.</p><ul><li>Réseau invité séparé du réseau familial</li><li>Snapshots avant chaque exercice</li><li>Comptes fictifs et données sans valeur</li><li>Journal des actions et remise à zéro</li></ul><a class="button primary" href="shop.html">Voir le matériel</a></article>
+        <article class="panel"><p class="eyebrow">02 / ressources</p><h2>Documentation guidée</h2><p>Utilise les ressources publiques et légales : OWASP Web Security Testing Guide, documentation Wireshark, MITRE ATT&amp;CK pour comprendre les techniques et guides des distributions de test.</p><div class="resource-list"><a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noreferrer">OWASP WSTG <span>Guide de test web</span></a><a href="https://www.wireshark.org/docs/" target="_blank" rel="noreferrer">Wireshark <span>Documentation officielle</span></a><a href="https://attack.mitre.org/" target="_blank" rel="noreferrer">MITRE ATT&amp;CK <span>Base de connaissances</span></a></div></article>
+    </section>
+    <section class="panel" id="methodes"><p class="eyebrow">03 / méthodologie</p><h2>Les grandes étapes d’un pentest autorisé</h2><div class="method-grid"><article><strong>Reconnaissance</strong><p>Définir le périmètre, les actifs et les règles d’engagement avec une autorisation claire.</p></article><article><strong>Cartographie</strong><p>Observer les services de son lab, documenter les versions et repérer les chemins d’exposition.</p></article><article><strong>Validation</strong><p>Reproduire une faiblesse sans détruire de données, avec des scénarios et comptes de test.</p></article><article><strong>Restitution</strong><p>Classer le risque, proposer un correctif, conserver les preuves et vérifier la correction.</p></article></div></section>
+    <section class="panel" id="contact"><p class="eyebrow">04 / contact</p><h2>Une question sur le lab ?</h2><form class="contact-form" id="contact-form"><label>Nom<input name="name" required placeholder="Ton prénom"></label><label>E-mail<input name="email" type="email" required placeholder="toi@example.com"></label><label>Message<textarea name="message" rows="5" required placeholder="Parle-moi de ton projet..."></textarea></label><button class="button primary" type="submit">Envoyer le message</button><p id="contact-message" role="status"></p></form></section>
+    <section class="panel code-panel"><p class="eyebrow">Accès démo / ressources publiques</p><h2>Codes de démonstration</h2><p>Ces codes ne contournent aucune protection : ils ouvrent seulement des ressources prévues par le site.</p><div class="code-actions"><button class="button secondary" data-resource="documentation">DOC-TRS4</button><button class="button secondary" data-resource="ia">IA-LOCAL</button><button class="button secondary" data-resource="pdf">PDF-LAB</button></div><p class="code-result" id="code-result" role="status"></p></section>
+</main>
+<footer class="site-footer"><div class="credit-box"><span class="credit-mark">R</span><span>Credit by www.trs4.com</span></div></footer>
+<script>
+const contactForm = document.querySelector('#contact-form');
+const contactMessage = document.querySelector('#contact-message');
+contactForm.addEventListener('submit', (event) => { event.preventDefault(); contactMessage.textContent = 'Message enregistré en démonstration. Aucun envoi externe n’a été effectué.'; contactForm.reset(); });
+const codeResult = document.querySelector('#code-result');
+const resources = { documentation: 'Documentation : consulte la section ressources ci-dessus.', ia: 'IA locale : utilise une instance hors ligne dans ton lab, sans envoyer de données sensibles.', pdf: 'PDF-LAB : la fiche de montage est disponible dans cette page et dans le shop.' };
+document.querySelectorAll('[data-resource]').forEach((button) => button.addEventListener('click', () => { codeResult.textContent = resources[button.dataset.resource]; }));
+</script>
+</body>
+</html>

@@ -96,7 +96,7 @@ const siteData = {
 app.use(express.json());
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'trs4.com' });
+  res.json({ status: 'ok', service: 'www.trs4.com', api: 'v1' });
 });
 
 app.get('/api/profile', (req, res) => {
@@ -124,7 +124,11 @@ app.get('/api/deploys', async (req, res) => {
   const serviceId = process.env.RENDER_SERVICE_ID || 'srv-dahbflqjnfac7394cn9g';
 
   if (!apiKey) {
-    return res.status(503).json({ error: 'RENDER_API_KEY is not configured' });
+    return res.json({
+      data: [],
+      configured: false,
+      message: 'Les déploiements Render ne sont pas configurés.'
+    });
   }
 
   const requestedLimit = Number.parseInt(req.query.limit, 10);
@@ -165,6 +169,6 @@ app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`TRS4 site running for https://www.trs4.com (local: http://localhost:${PORT})`);
 });

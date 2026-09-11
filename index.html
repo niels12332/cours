@@ -19,6 +19,7 @@
             <div class="nav-links">
                 <a href="index.html">Accueil</a>
                 <a href="materiel.html">Matériel</a>
+                <a href="lab.html">Home lab</a>
                 <a href="progression.html">Progression</a>
                 <a href="projets.html">Projets</a>
                 <a href="shop.html">Shop</a>
@@ -132,7 +133,7 @@
 
                 const deploys = Array.isArray(payload) ? payload : payload.data || [];
                 if (!deploys.length) {
-                    deployStatus.textContent = 'Aucun déploiement disponible.';
+                    deployStatus.textContent = payload.message || 'Aucun déploiement disponible.';
                     return;
                 }
 
