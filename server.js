@@ -259,7 +259,7 @@ app.get('/api/deploys', async (req, res) => {
 
 app.use(express.static(__dirname));
 
-app.get('*', (req, res, next) => {
+app.use((req, res, next) => {
   if (req.path.startsWith('/api/')) {
     return next();
   }
