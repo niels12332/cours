@@ -60,6 +60,55 @@
             <button class="button primary" id="quote-button" type="button">Décrire mon projet</button>
         </section>
 
+        <section class="workspace-shell" aria-label="Workspace de travail TRS4">
+            <div class="workspace-window">
+                <div class="window-header">
+                    <div class="window-dots" aria-hidden="true">
+                        <span class="dot red"></span>
+                        <span class="dot amber"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="window-tabs">
+                        <span class="tab active">workspace.ts</span>
+                        <span class="tab">terminal.sh</span>
+                    </div>
+                    <button class="run-button" type="button" id="run-project-button">Run project</button>
+                </div>
+
+                <div class="window-body">
+                    <div class="editor-pane" aria-label="Éditeur de code">
+                        <div class="editor-gutter" aria-hidden="true">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                        </div>
+                        <div class="editor-code">
+                            <div class="code-line"><span class="token key">const</span> <span class="token var">kit</span> = <span class="token str">'TRS4 Lab'</span>;</div>
+                            <div class="code-line"><span class="token key">const</span> <span class="token var">stack</span> = [<span class="token str">'React'</span>, <span class="token str">'Node'</span>, <span class="token str">'Linux'</span>];</div>
+                            <div class="code-line"><span class="token key">const</span> <span class="token var">mission</span> = <span class="token str">'build smarter tools'</span>;</div>
+                            <div class="code-line empty"></div>
+                            <div class="code-line"><span class="token key">export</span> <span class="token key">default</span> <span class="token var">launch</span>({ kit, stack, mission });</div>
+                            <div class="code-line"><span class="token key">console</span>.<span class="token var">log</span>(<span class="token str">'Ready for deployment'</span>);</div>
+                        </div>
+                    </div>
+
+                    <div class="terminal-pane" aria-live="polite" id="terminal-pane">
+                        <div class="terminal-header">terminal</div>
+                        <div class="terminal-row"><span class="prompt">trs4@studio</span> ~ % <span>npm run build</span></div>
+                        <div class="terminal-row"><span class="ok">✓</span> Compiling UI components</div>
+                        <div class="terminal-row"><span class="ok">✓</span> Preparing lab kit bundle</div>
+                        <div class="terminal-row"><span class="ok">✓</span> Syncing network stack</div>
+                        <div class="terminal-row"><span class="ok">✓</span> Generating static assets</div>
+                        <div class="terminal-row"><span class="ok">✓</span> Deployment preview ready</div>
+                        <div class="terminal-row"><span class="prompt">trs4@studio</span> ~ % <span class="blink">_</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="shop-layout" aria-label="Boutique">
             <div class="product-grid" id="product-grid"></div>
 

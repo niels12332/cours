@@ -54,6 +54,24 @@
             </aside>
         </section>
 
+        <section class="stats-grid" aria-label="Axes de travail">
+            <article class="stat-card">
+                <span class="stat-kicker">01</span>
+                <h3>Réseaux</h3>
+                <p>Comprendre les flux, les protocoles et les architectures de communication.</p>
+            </article>
+            <article class="stat-card">
+                <span class="stat-kicker">02</span>
+                <h3>Développement</h3>
+                <p>Créer des interfaces, des services web et des outils utiles autour du numérique.</p>
+            </article>
+            <article class="stat-card">
+                <span class="stat-kicker">03</span>
+                <h3>Déploiement</h3>
+                <p>Mettre des projets en ligne, les tester et améliorer la fiabilité du rendu.</p>
+            </article>
+        </section>
+
         <section class="grid-3">
             <article class="card">
                 <h3>Début</h3>
@@ -133,7 +151,10 @@
 
             try {
                 const response = await fetch('/api/deploys?limit=3');
-                const payload = await response.json();
+                const contentType = response.headers.get('content-type') || '';
+                const payload = contentType.includes('application/json')
+                    ? await response.json()
+                    : { error: 'Le service API n’est pas disponible dans ce contexte.' };
 
                 if (!response.ok) {
                     throw new Error(payload.error || 'Impossible de charger les déploiements.');
@@ -172,7 +193,7 @@
                     deployList.append(item);
                 });
             } catch (error) {
-                deployStatus.textContent = error.message;
+                deployStatus.textContent = error.message || 'Impossible de charger les déploiements.';
             } finally {
                 refreshDeploys.disabled = false;
             }

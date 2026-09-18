@@ -29,7 +29,22 @@
 <script>
 const contactForm = document.querySelector('#contact-form');
 const contactMessage = document.querySelector('#contact-message');
-contactForm.addEventListener('submit', async (event) => { event.preventDefault(); const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(contactForm))) }); const payload = await response.json(); contactMessage.textContent = payload.message || payload.error; if (response.ok) contactForm.reset(); });
+contactForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
+    });
+    const contentType = response.headers.get('content-type') || '';
+    const payload = contentType.includes('application/json') ? await response.json() : { error: 'Le service API n’est pas disponible dans ce contexte.' };
+    contactMessage.textContent = payload.message || payload.error || 'Erreur inconnue.';
+    if (response.ok) contactForm.reset();
+  } catch (error) {
+    contactMessage.textContent = 'Le message n’a pas pu être envoyé pour le moment.';
+  }
+});
 const codeResult = document.querySelector('#code-result');
 const resources = { documentation: 'Documentation : consulte la section ressources ci-dessus.', ia: 'IA locale : utilise une instance hors ligne dans ton lab, sans envoyer de données sensibles.', pdf: 'PDF-LAB : la fiche de montage est disponible dans cette page et dans le shop.' };
 document.querySelectorAll('[data-resource]').forEach((button) => button.addEventListener('click', () => { codeResult.textContent = resources[button.dataset.resource]; }));

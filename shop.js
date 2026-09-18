@@ -317,5 +317,45 @@ document.querySelectorAll('dialog').forEach((dialog) => {
     });
 });
 
+const runProjectButton = document.querySelector('#run-project-button');
+const terminalPane = document.querySelector('#terminal-pane');
+
+if (runProjectButton && terminalPane) {
+    runProjectButton.addEventListener('click', () => {
+        const steps = [
+            'npm install',
+            'npm run lint',
+            'npm run build',
+            'vite build',
+            'deploy preview ready',
+            'status: success'
+        ];
+
+        runProjectButton.disabled = true;
+        runProjectButton.textContent = 'Building...';
+        terminalPane.innerHTML = `
+            <div class="terminal-header">terminal</div>
+            <div class="terminal-row"><span class="prompt">trs4@studio</span> ~ % <span>${steps[0]}</span></div>
+            <div class="terminal-row"><span class="ok">✓</span> Fetching dependencies</div>
+            <div class="terminal-row"><span class="prompt">trs4@studio</span> ~ % <span>${steps[1]}</span></div>
+            <div class="terminal-row"><span class="ok">✓</span> Lint check passed</div>
+            <div class="terminal-row"><span class="prompt">trs4@studio</span> ~ % <span>${steps[2]}</span></div>
+            <div class="terminal-row"><span class="ok">✓</span> Bundling design system</div>
+            <div class="terminal-row"><span class="ok">✓</span> Optimizing assets</div>
+            <div class="terminal-row"><span class="prompt">trs4@studio</span> ~ % <span>${steps[3]}</span></div>
+            <div class="terminal-row"><span class="ok">✓</span> Production build generated</div>
+            <div class="terminal-row"><span class="prompt">trs4@studio</span> ~ % <span>${steps[4]}</span></div>
+            <div class="terminal-row"><span class="ok">✓</span> Preview is live</div>
+            <div class="terminal-row"><span class="prompt">trs4@studio</span> ~ % <span>${steps[5]}</span></div>
+            <div class="terminal-row"><span class="ok">✓</span> Build completed successfully</div>
+        `;
+
+        window.setTimeout(() => {
+            runProjectButton.disabled = false;
+            runProjectButton.textContent = 'Run project';
+        }, 1800);
+    });
+}
+
 renderProducts();
 renderCart();

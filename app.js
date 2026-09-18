@@ -23,9 +23,10 @@ document.querySelectorAll('[data-api-form]').forEach((form) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(form)))
       });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message);
-      status.textContent = data.message;
+      const contentType = response.headers.get('content-type') || '';
+      const data = contentType.includes('application/json') ? await response.json() : { message: 'Réponse inattendue de l’API.' };
+      if (!response.ok) throw new Error(data.message || data.error || 'Erreur de requête.');
+      status.textContent = data.message || 'Action effectuée.';
       status.classList.add('success');
       if (form.dataset.apiForm.includes('request-code')) {
         const codeStep = document.querySelector('[data-code-step]');
